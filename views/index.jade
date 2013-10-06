@@ -4,13 +4,13 @@ block content
   h1= title
   form(action="/", method="post")
     each row in rows
-      h2 #{row[0]}
-      each event in row[1]
+      h2 #{row.namespace}
+      each event in row.events
         div
           h4 #{event}
           each medium in Object.keys(user.contact)
             label
-              input(type="checkbox", name="#{row[0]}[#{event}][]", value="#{medium}", checked=user.subscribed(row[0], event, medium))
+              input(type="checkbox", name="#{row.namespace}[#{event}][]", value="#{medium}", checked=user.subscribed(row.namespace, event, medium))
               | #{medium}
 
     input(type="submit", value="Update")
