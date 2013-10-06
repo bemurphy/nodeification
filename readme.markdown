@@ -27,12 +27,13 @@ For a namespace `coolapp` create a CouchDB document like this:
 
 ```json
 {
+   _id: 'coolapp',
    "account.canceled": "account canceled, boo =(, id: {{id}}, plan: {{plan}}",
    "account.signup": "account signed up!  email: {{email}}, plan: {{plan}}"
 }
 ```
 
-The template support familiar Mustache tags which are populate from the data.  If
+The templates support familiar Mustache tags which are populate from the data.  If
 no template is found, the system will ignore the message and skip broadcasting.
 
 ## Configuring user subscriptions
@@ -70,7 +71,7 @@ have thousands of subscriptions.
 ```
 
 In the above example, the user John Doe is configured to receive
-pushover notificatoins regarding coolapp, for account cancellation
+pushover notifications regarding coolapp, for account cancellation
 and signup events.  However, for awesomeapp, John will only receive
 email notifications for account.signup events.
 
