@@ -9,7 +9,7 @@ var client = new Pushover({
 exports.send = function(data, message) {
   var routing = {
     namespace: data.namespace,
-    event: data.key,
+    event: data.event,
     medium: 'pushover'
   };
 

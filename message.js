@@ -1,3 +1,4 @@
+var db = require('nano')('http://localhost:5984/notifications');
 var Mustache = require("mustache");
 
 var templates = {
@@ -6,6 +7,11 @@ var templates = {
 };
 
 module.exports = function(data) {
-  var template = templates[data.key];
-  return Mustache.render(template, data);
+
+  var getTemplate = function() {
+    return templates[data.event];
+  };
+
+  var template = getTemplate();
+  if (template) return Mustache.render(template, data);
 };
