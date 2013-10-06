@@ -27,7 +27,7 @@ For a namespace `coolapp` create a CouchDB document like this:
 
 ```json
 {
-   _id: 'coolapp',
+   "_id": "coolapp",
    "account.canceled": "account canceled, boo =(, id: {{id}}, plan: {{plan}}",
    "account.signup": "account signed up!  email: {{email}}, plan: {{plan}}"
 }
