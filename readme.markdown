@@ -2,7 +2,7 @@
 
 A tiny node api useful for broadcasting short messages to your team.
 
-Currently supports Pushover, with email coming shortly.
+Currently supports Pushover, with email and Campfire coming shortly.
 
 ## Overview
 
