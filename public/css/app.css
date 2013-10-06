@@ -1,3 +1,7 @@
+body {
+  padding-bottom: 60px;
+}
+
 .main {
   margin: 0 auto;
   width: 330px;
@@ -9,4 +13,9 @@ legend.namespace {
 
 h4 {
   margin: 0 0 14px;
+}
+
+.pure-form-stacked input[type="text"],
+.pure-form-stacked input[type="password"] {
+  width: 100%;
 }

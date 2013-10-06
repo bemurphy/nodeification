@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/settings", method="post", class="pure-form pure-form-stacked")
+    fieldset
+      legend Contact Info
+      label Email
+      input(type="text", name="user[contact][email]", value=user.contact.email)
+      label Pushover User
+      input(type="text", name="user[contact][pushover]", value=user.contact.pushover)
+    fieldset
+      legend Notifications
+      label.pure-checkbox
+        input(type="checkbox", name="user[mute_notifications]", value="true", checked=user.mute_notifications)
+        |Mute all notifications
+    fieldset
+      legend Password
+      label Current Password
+      input(type="password", name="user[current_password]")
+      label New Password
+      input(type="password", name="user[new_password]")
+      label New Password Confirmation
+      input(type="password", name="user[password_confirmation]")
+    input(type="submit", value="Update", class="pure-button pure-button-primary")

@@ -22,6 +22,7 @@ app.get("/", function(req, res) {
     db.view('notifications', 'namespace_events', function(err, body){
 
       res.render('index', {
+        title: 'Subscriptions',
         user: user,
         rows: u.map(body.rows, function(r){ return r.value; })
       });
@@ -36,6 +37,28 @@ app.post("/", function(req, res){
     user.subscriptions = req.body;
     db.insert(user, function(err, user){
       res.redirect('/');
+    });
+  });
+});
+
+app.get("/settings", function(req, res) {
+  var id = '82d362f0e9c65a9cb64319aeb209b970';
+
+  db.get(id, function(err, user){
+    res.render('settings', {
+      user: user,
+      title: 'Settings'
+    });
+  });
+});
+
+app.post("/settings", function(req, res) {
+  var id = '82d362f0e9c65a9cb64319aeb209b970';
+
+  db.get(id, function(err, user){
+    user.mute_notifications = req.body.user.mute_notifications === 'true';
+    db.insert(user, function(err, doc){
+      res.redirect("/settings");
     });
   });
 });
