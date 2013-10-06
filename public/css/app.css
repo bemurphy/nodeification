@@ -1,0 +1,12 @@
+.main {
+  margin: 0 auto;
+  width: 330px;
+}
+
+legend.namespace {
+  text-transform: uppercase;
+}
+
+h4 {
+  margin: 0 0 14px;
+}

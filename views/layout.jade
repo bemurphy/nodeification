@@ -1,7 +1,11 @@
 doctype 5
 html
   head
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='//yui.yahooapis.com/pure/0.3.0/base-min.css')
+    link(rel='stylesheet', href='//yui.yahooapis.com/pure/0.3.0/pure-min.css')
+    link(rel='stylesheet', href='/css/app.css')
   body
-    block content
+    .main
+      block content

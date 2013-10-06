@@ -8,6 +8,8 @@ var User = require('./user');
 var u = require('underscore');
 
 app.use(express.bodyParser());
+// TODO use nginx for prod
+app.use(express.static('public'));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -33,7 +35,7 @@ app.post("/", function(req, res){
   db.get(id, function(err, user){
     user.subscriptions = req.body;
     db.insert(user, function(err, user){
-      res.send(user);
+      res.redirect('/');
     });
   });
 });

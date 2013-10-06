@@ -2,15 +2,15 @@ extends layout
 
 block content
   h1= title
-  form(action="/", method="post")
+  form(action="/", method="post", class="pure-form")
     each row in rows
-      h2 #{row.namespace}
-      each event in row.events
-        div
+      fieldset
+        legend.namespace #{row.namespace}
+        each event in row.events
           h4 #{event}
           each medium in Object.keys(user.contact)
-            label
+            label.pure-checkbox
               input(type="checkbox", name="#{row.namespace}[#{event}][]", value="#{medium}", checked=user.subscribed(row.namespace, event, medium))
-              | #{medium}
+              |#{medium}
 
-    input(type="submit", value="Update")
+    input(type="submit", value="Update", class="pure-button pure-button-primary")
