@@ -49,7 +49,7 @@ exports.addSubscription = function(id, config, callback) {
 var findSubscribed = exports.findSubscribed = function(config, callback) {
   var key = [config.namespace, config.event, config.medium];
 
-  db.view('notifications', 'notifications', {key: key}, function(err, body){
+  db.view('notifications', 'subscriptions', {key: key}, function(err, body){
     var contacts = u.collect(body.rows, function(r){
       return r.value;
     });
