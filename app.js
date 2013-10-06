@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var push = require('./push');
 var bus = new(require('events').EventEmitter)();
+var Message = require("./message");
 
 app.use(express.bodyParser());
 
@@ -17,5 +18,7 @@ app.listen(port, function(){
 });
 
 bus.on('notification', function(data){
-  push.send(data);
+  var message = Message(data);
+
+  push.send(data, message);
 });

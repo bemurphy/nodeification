@@ -1,4 +1,3 @@
-var Message = require("./message");
 var Pushover = require("pushover-notifications");
 var directory = require("./directory");
 
@@ -7,9 +6,7 @@ var client = new Pushover({
   token: process.env.PUSHOVER_TOKEN
 });
 
-exports.send = function(data) {
-  var message = Message(data);
-
+exports.send = function(data, message) {
   var routing = {
     namespace: data.namespace,
     event: data.key,
