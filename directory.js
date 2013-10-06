@@ -14,11 +14,10 @@ var save = function(doc) {
 var ensureSubPath = function(doc, config) {
   var ns = config.namespace;
   var event = config.event;
-  var medium = config.medium;
 
   ensureDefault(doc, 'subscriptions', {});
   ensureDefault(doc.subscriptions, ns, {});
-  ensureDefault(doc.subscriptions[ns], medium, []);
+  ensureDefault(doc.subscriptions[ns], event, []);
 };
 
 exports.removeSubscription = function(id, config, callback) {
@@ -27,8 +26,8 @@ exports.removeSubscription = function(id, config, callback) {
   db.get(id, function(err, doc) {
     ensureSubPath(doc, config);
 
-    if (doc.subscriptions[c.namespace][c.medium].indexOf(c.event) !== -1) {
-      doc.subscriptions[c.namespace][c.medium] = u.without(doc.subscriptions[c.namespace][c.medium], c.event);
+    if (doc.subscriptions[c.namespace][c.event].indexOf(c.medium) !== -1) {
+      doc.subscriptions[c.namespace][c.event] = u.without(doc.subscriptions[c.namespace][c.event], c.medium);
       save(doc);
     }
   });
@@ -40,8 +39,8 @@ exports.addSubscription = function(id, config, callback) {
   db.get(id, function(err, doc) {
     ensureSubPath(doc, config);
 
-    if (doc.subscriptions[c.namespace][c.medium].indexOf(c.event) === -1) {
-      doc.subscriptions[c.namespace][c.medium].push(c.event);
+    if (doc.subscriptions[c.namespace][c.event].indexOf(c.medium) === -1) {
+      doc.subscriptions[c.namespace][c.event].push(c.medium);
       save(doc);
     }
   });
