@@ -7,11 +7,13 @@ var client = new Pushover({
 });
 
 exports.send = function(data, message) {
+
   var routing = {
     namespace: data.namespace,
     event: data.event,
     medium: 'pushover'
   };
+
 
   directory.eachSubscribed(routing, function(contact){
     var msg = {

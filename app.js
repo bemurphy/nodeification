@@ -18,7 +18,7 @@ app.listen(port, function(){
 });
 
 bus.on('notification', function(data){
-  var message = Message(data);
-
-  push.send(data, message);
+  Message(data, function(message) {
+    if (message) push.send(data, message);
+  });
 });
