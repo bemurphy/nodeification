@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/", method="post")
+    each row in rows
+      h2 #{row[0]}
+      each event in row[1]
+        div
+          h4 #{event}
+          each medium in Object.keys(user.contact)
+            label
+              input(type="checkbox", name="#{row[0]}[#{event}][]", value="#{medium}", checked=user.subscribed(row[0], event, medium))
+              | #{medium}
+
+    input(type="submit", value="Update")

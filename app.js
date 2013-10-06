@@ -3,8 +3,40 @@ var app = express();
 var push = require('./push');
 var bus = new(require('events').EventEmitter)();
 var Message = require("./message");
+var db = require('nano')('http://localhost:5984/notifications');
+var User = require('./user');
+var u = require('underscore');
 
 app.use(express.bodyParser());
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+app.get("/", function(req, res) {
+  var id = '82d362f0e9c65a9cb64319aeb209b970';
+
+  db.get(id, function(err, doc){
+    var user = new User(doc);
+    db.view('notifications', 'namespace_events', function(err, body){
+
+      res.render('index', {
+        user: user,
+        rows: u.map(body.rows, function(r){ return r.value; })
+      });
+    });
+  });
+});
+
+app.post("/", function(req, res){
+  var id = '82d362f0e9c65a9cb64319aeb209b970';
+
+  db.get(id, function(err, user){
+    user.subscriptions = req.body;
+    db.insert(user, function(err, user){
+      res.send(user);
+    });
+  });
+});
 
 app.post("/notifications", function(req, res){
   bus.emit('notification', req.body);

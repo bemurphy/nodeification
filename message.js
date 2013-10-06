@@ -6,7 +6,7 @@ module.exports = function(data, callback) {
   var getTemplate = function(callback) {
     db.get(data.namespace, function(err, doc){
       doc = doc || {};
-      callback(doc[data.event]);
+      callback(doc.templates[data.event]);
     });
   };
 
